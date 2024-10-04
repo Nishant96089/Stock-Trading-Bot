@@ -1,0 +1,26 @@
+<!-- trading/templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Run the Trading Bot</h2>
+    <button id="run-bot">Run Bot</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('run-bot').addEventListener('click', function() {
+            fetch('/run-bot/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        document.getElementById('result').innerText = "Bot executed successfully.";
+                    } else if (data.error) {
+                        document.getElementById('result').innerText = "Error: " + data.error;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('result').innerText = "Error running bot.";
+                });
+        });
+    </script>
+{% endblock %}

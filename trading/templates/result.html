@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Trading Bot Summary</h2>
+    
+    <ul>
+        <li><strong>Final Balance:</strong> {{ report.final_balance }}</li>
+        <li><strong>Positions:</strong> {{ report.positions }}</li>
+        <li><strong>Profit/Loss:</strong> {{ report.profit_loss }}</li>
+    </ul>
+
+    <h3>Trade Log</h3>
+    <ul>
+        {% for trade in report.trade_log %}
+            <li>{{ trade }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/" class="btn btn-secondary">Go Back</a>
+{% endblock %}
